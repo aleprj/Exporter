@@ -46,7 +46,9 @@ public abstract class Exporter extends Button implements StreamSource {
     }
 
     public void setTableToBeExported(Table table) {
-        setContainerToBeExported(table.getContainerDataSource());
+    	fileBuilder = createFileBuilder(table);
+		configureFileBuilderLocale();
+		
         setVisibleColumns(table.getVisibleColumns());
         setHeader(table.getCaption());
         for (Object column : table.getVisibleColumns()) {
@@ -59,6 +61,10 @@ public abstract class Exporter extends Button implements StreamSource {
 
 	public void setContainerToBeExported(Container container) {
 		fileBuilder = createFileBuilder(container);
+		configureFileBuilderLocale();
+	}
+
+	protected void configureFileBuilderLocale() {
 		if (locale != null) {
 			fileBuilder.setLocale(locale);
 		}
@@ -88,6 +94,7 @@ public abstract class Exporter extends Button implements StreamSource {
     }
 
     protected abstract FileBuilder createFileBuilder(Container container);
+    protected abstract FileBuilder createFileBuilder(Table table);
 
     protected abstract String getDownloadFileName();
     

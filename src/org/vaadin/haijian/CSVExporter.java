@@ -29,6 +29,11 @@ public class CSVExporter extends Exporter {
     protected FileBuilder createFileBuilder(Container container) {
         return new CSVFileBuilder(container);
     }
+    
+    @Override
+    protected FileBuilder createFileBuilder(Table table) {
+        return new CSVFileBuilder(table);
+    }
 
     @Override
     protected String getDownloadFileName() {

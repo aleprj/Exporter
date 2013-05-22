@@ -29,6 +29,11 @@ public class PdfExporter extends Exporter {
     protected FileBuilder createFileBuilder(Container container) {
         return new PdfFileBuilder(container);
     }
+    
+    @Override
+    protected FileBuilder createFileBuilder(Table table) {
+        return new PdfFileBuilder(table);
+    }
 
     @Override
     protected String getDownloadFileName() {
